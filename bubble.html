@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>BubbleSort</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="bubble.js"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>BubbleSort</h1>
+        <div class="starting-container">
+            <div class="button-container">
+                <button id="start-bubble" onClick="startBubbleSort()">Start</button>
+                <button id="pauseButton">Pause</button>
+                <button id="resumeButton">Resume</button>
+                <button id="reset-bubble">Board zurücksetzen</button>
+                <p>Der Bubble-Sort Algorithmus vergleicht benachbarte Elemente in einer Liste und vertauscht sie bei Bedarf. Das größte Element steigt nach und nach an das Ende der Liste auf. Dieser Vorgang wird wiederholt, bis die gesamte Liste sortiert ist. Der Algorithmus hat eine quadratische Laufzeitkomplexität von O(n^2).</p>
+                <button id="file" onclick="chooseSortingAlgorithm(this.id)">Homepage</button>
+            </div>
+            <div class="whiteBoard">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+        </div>
+    </body>
+</html>

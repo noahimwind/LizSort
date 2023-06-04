@@ -1,0 +1,54 @@
+body {
+    background-color: white;
+    padding: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1{
+    padding: 20px;
+    text-align: center;
+    background: white;
+    color: black;
+    outline-color: black;
+    outline-style: solid;
+    font-size: 30px;
+}
+
+.starting-container{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 30px;
+}
+
+.welcome-note{
+    outline-style: solid;
+    outline-color: gray;
+    padding: 15px;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    outline-style: solid;
+    outline-color: grey;
+}
+
+button{
+    width: 200px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.whiteBoard{
+    outline-style: solid;
+    outline-color: gray;
+    padding: 15px;
+}
+
+.boardCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>manuelles Sortieren</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <script src="manual.js"></script>
+    </head>
+
+    <body>
+        <h1>manuelles Sortieren</h1>
+        <div class="starting-container">
+            <div class="button-container">
+                <h3>Aktionen:</h3>
+                <button id="addRandomCard" onclick="drawRectangle()">Karte hinzufügen</button>
+                <button id="deleteAll">Board leeren</button>
+                <h3>Erklärung:</h3>
+                <p>Hier könnt ihr euch selbst austoben und die erlernten Sortier-Algorithmen ausprobieren.</p>
+                <p>Die Werte der Karten werden zufällig zugewiesen.</p>
+                <p>(Um ein Element zu löschen könnt ihr einfach drauf rechtsklicken.)</p>
+                <button id="file" onclick="chooseSortingAlgorithm(this.id)"">Homepage</button>
+            </div>
+            <div class="whiteBoard">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+        </div>
+    </body>
+</html>
