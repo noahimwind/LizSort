@@ -18,87 +18,85 @@ function startBubbleSort() {
 
         context.font = "20px Arial";
         context.fillStyle = "#FFFFFF";
-        context.fillText(value, x + width/2 - 10, y + height/2 + 10);
+        context.fillText(value, x + width / 2 - 10, y + height / 2 + 10);
     }
 
-    // Hilfsfunktion zum Tauschen der Rechtecke im Array
     function swapRectangles(indexA, indexB) {
         var temp = zahlenArray[indexA];
         zahlenArray[indexA] = zahlenArray[indexB];
         zahlenArray[indexB] = temp;
-
-        // Visuelle Darstellung des Tauschs
-        var rectA = {
-            x: startX + (width + distance) * indexA,
-            y: 100,
-            width: width,
-            height: height,
-            color: "#808080",
-            value: zahlenArray[indexA]
-        };
-
-        var rectB = {
-            x: startX + (width + distance) * indexB,
-            y: 100,
-            width: width,
-            height: height,
-            color: "#808080",
-            value: zahlenArray[indexB]
-        };
-
-        // Zeichne die Rechtecke neu
-        drawRectangle(rectA.x, rectA.y, rectA.width, rectA.height, rectA.color, rectA.value);
-        drawRectangle(rectB.x, rectB.y, rectB.width, rectB.height, rectB.color, rectB.value);
     }
 
-    // Bubble-Sortieralgorithmus
-    function bubbleSort() {
-        var n = zahlenArray.length;
-        var swapped = true;
-        var passes = 0;
+    function drawRectangles() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < anzahlRechtecke; i++) {
+            var x = startX + (width + distance) * i;
+            var y = 100;
+            var value = zahlenArray[i];
+            var color = "#808080";
+            drawRectangle(x, y, width, height, color, value);
+        }
+    }
 
-        function logArray() {
-            console.log("Schritt " + passes + ": ", zahlenArray);
+    async function animateSwap(i) {
+        if (i >= zahlenArray.length - 1) {
+            if (await bubbleSortIteration()) {
+                // Die Liste ist noch nicht vollständig sortiert, also erneut animieren
+                await animateSwap(0);
+            }
+            return;
         }
 
-        function drawRectangles() {
-            context.clearRect(0, 0, canvas.width, canvas.height);
-            for (var i = 0; i < anzahlRechtecke; i++) {
-                var x = startX + (width + distance) * i;
-                var y = 100;
-                var value = zahlenArray[i];
-                var color = "#808080";
-                drawRectangle(x, y, width, height, color, value);
-            }
+        if (zahlenArray[i] > zahlenArray[i + 1]) {
+            var rectA = {
+                index: i,
+                x: startX + (width + distance) * i,
+                y: 100,
+                width: width,
+                height: height,
+                color: "#0000FF",
+                value: zahlenArray[i]
+            };
+
+            var rectB = {
+                index: i + 1,
+                x: startX + (width + distance) * (i + 1),
+                y: 100,
+                width: width,
+                height: height,
+                color: "#0000FF",
+                value: zahlenArray[i + 1]
+            };
+
+            drawRectangle(rectA.x, rectA.y, rectA.width, rectA.height, rectA.color, rectA.value);
+            drawRectangle(rectB.x, rectB.y, rectB.width, rectB.height, rectB.color, rectB.value);
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            swapRectangles(rectA.index, rectB.index);
+
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+
+            drawRectangles();
         }
 
-        function animateSwap(i) {
-            if (i >= n - 1 - passes) {
-                passes++;
-                if (!swapped) {
-                    // Sortierung abgeschlossen
-                    console.log("Sortierung abgeschlossen: ", zahlenArray);
-                    return;
-                }
-                swapped = false;
-                animateSwap(0);
-                return;
-            }
+        await animateSwap(i + 1);
+    }
 
+    async function bubbleSortIteration() {
+        var swapped = false;
+        for (var i = 0; i < zahlenArray.length - 1; i++) {
             if (zahlenArray[i] > zahlenArray[i + 1]) {
                 swapRectangles(i, i + 1);
                 swapped = true;
-                drawRectangles();
             }
-
-            setTimeout(function() {
-                animateSwap(i + 1);
-            }, 2000);
         }
-
         drawRectangles();
+        return swapped;
+    }
+
+    function bubbleSort() {
         animateSwap(0);
-        logArray();
     }
 
     function isDuplicate(value) {
