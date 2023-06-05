@@ -71,11 +71,11 @@ function startBubbleSort() {
             drawRectangle(rectA.x, rectA.y, rectA.width, rectA.height, rectA.color, rectA.value);
             drawRectangle(rectB.x, rectB.y, rectB.width, rectB.height, rectB.color, rectB.value);
 
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 2000));
 
             swapRectangles(rectA.index, rectB.index);
 
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 2000));
 
             drawRectangles();
         }
