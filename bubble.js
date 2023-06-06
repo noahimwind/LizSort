@@ -12,6 +12,9 @@ function startBubbleSort() {
 
     var startX = (canvas.width - (anzahlRechtecke * width + (anzahlRechtecke - 1) * distance)) / 2;
 
+    var animationPaused = false; // Variable zum Überprüfen, ob die Animation pausiert ist
+    var currentIndex = 0; // Index des aktuellen Schritts in der Animation
+
     function drawRectangle(x, y, width, height, color, value) {
         context.fillStyle = color;
         context.fillRect(x, y, width, height);
@@ -42,7 +45,7 @@ function startBubbleSort() {
         if (i >= zahlenArray.length - 1) {
             if (await bubbleSortIteration()) {
                 // Die Liste ist noch nicht vollständig sortiert, also erneut animieren
-                await animateSwap(0);
+                animateSwap(0);
             }
             return;
         }
@@ -75,12 +78,16 @@ function startBubbleSort() {
 
             swapRectangles(rectA.index, rectB.index);
 
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-
             drawRectangles();
+
+            await new Promise((resolve) => setTimeout(resolve, 2000));
         }
 
-        await animateSwap(i + 1);
+        if (!animationPaused) {
+            animateSwap(i + 1);
+        } else {
+            currentIndex = i + 1; // Speichern des aktuellen Index für die Fortsetzung
+        }
     }
 
     async function bubbleSortIteration() {
@@ -124,4 +131,18 @@ function startBubbleSort() {
     }
 
     bubbleSort();
+
+    var pauseButton = document.getElementById("pauseButton");
+    var resumeButton = document.getElementById("resumeButton");
+
+    pauseButton.addEventListener("click", function() {
+        animationPaused = true;
+    });
+
+    resumeButton.addEventListener("click", function() {
+        if (animationPaused) {
+            animationPaused = false;
+            animateSwap(currentIndex);
+        }
+    });
 }
