@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>InsertionSort</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="bubble.js"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>InsertionSort</h1>
+        <div class="starting-container">
+            <div class="button-container">
+                <button id="start-bubble" onClick="startInsertionSort()">Start</button>
+                <button id="pauseButton">Pause</button>
+                <button id="resumeButton">Fortsetzen</button>
+                <button id="reset-insertion">Board zurücksetzen</button>
+                <p>Informationstext InsertionSort</p>
+                <button id="file" onclick="chooseSortingAlgorithm(this.id)">Homepage</button>
+            </div>
+            <div class="whiteBoard">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+        </div>
+    </body>
+</html>
