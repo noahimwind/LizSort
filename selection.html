@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>SelectionSort</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="selection.js"></script>
+        <script src="script.js"></script>
+    </head>
+
+    <body>
+        <h1>InsertionSort</h1>
+        <div class="starting-container">
+            <div class="selection-container">
+                <button id="start-selection" onClick="startSelectionSort()">Start</button>
+                <button id="pauseButton">Pause</button>
+                <button id="resumeButton">Fortsetzen</button>
+                <button id="reset-selection">Board zurücksetzen</button>
+                <p>Informationstext InsertionSort</p>
+                <button id="file" onclick="chooseSortingAlgorithm(this.id)">Homepage</button>
+            </div>
+            <div class="whiteBoard">
+                <canvas id="boardCanvas"></canvas>
+            </div>
+        </div>
+    </body>
+</html>
